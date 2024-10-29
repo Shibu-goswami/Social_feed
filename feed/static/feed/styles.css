@@ -1,0 +1,117 @@
+/* styles.css */
+
+/* Smooth Gradient Background */
+body {
+    background: linear-gradient(120deg, #1e1e2f, #4b4b6d);
+    animation: backgroundAnimation 15s ease infinite;
+    color: #ffffff; /* Text color for better contrast */
+    font-family: 'Arial', sans-serif; /* Font style */
+}
+
+/* Keyframes for Background Animation */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin-top: 2rem;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 15px; /* Rounded corners */
+    background: rgba(255, 255, 255, 0.1); /* Transparent card background */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover effect */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly increase size on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.card-body {
+    padding: 20px; /* Padding inside cards */
+}
+
+/* Title Style */
+.card-body h5 {
+    font-weight: bold;
+    color: #bf7979; /* Title color */
+}
+
+/* Textarea Styles */
+textarea {
+    resize: none;
+    border-radius: 20px; /* Rounded corners */
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 20px; /* Rounded corners for buttons */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Animation for button hover */
+    border: none; /* Remove default border */
+}
+
+.btn-primary {
+    background-color: #0d6efd; /* Primary button color */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Move button slightly up on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Danger button color */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Darker shade on hover */
+}
+
+/* Comments Section Styles */
+.comments {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Light border for comments section */
+    border-radius: 10px; /* Rounded corners for comments */
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent background for comments */
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column; /* Stack input and button on small screens */
+    }
+
+    .input-group textarea {
+        margin-bottom: 10px; /* Space between textarea and button */
+    }
+}
+
+.card-text {
+    font-family: 'Arial', sans-serif; /* Set to Arial */
+    font-weight: bold; /* Make it bold */
+    font-size: 1.1rem; /* Adjust the size as needed */
+    color: #090909; /* Ensure the text color contrasts well with the background */
+}
+
+/* Adjust title styles if needed */
+.card-body h5 {
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Set title font to Arial */
+    color: #d27272; /* Title color */
+}

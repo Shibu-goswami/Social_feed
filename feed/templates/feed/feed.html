@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-light">Social Feed</h2>
+
+    <form method="post" action="{% url 'feed:add_message' %}" class="mb-4">
+        {% csrf_token %}
+        <div class="input-group">
+            <textarea name="content" class="form-control" placeholder="What's on your mind?" rows="3" style="border-radius: 20px;"></textarea>
+            <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Post</button>
+        </div>
+    </form>
+
+    <hr class="bg-light">
+
+    {% for message in messages %}
+    <div class="card mb-3 shadow-sm" style="border-radius: 20px; background: rgba(255, 255, 255, 0.9);">
+        <div class="card-body">
+            <h5 class="card-title">{{ message.user.username }}</h5>
+            <p class="card-text">{{ message.content }}</p>
+            <small class="text-muted">{{ message.created_at }}</small>
+
+            <!-- Like Button -->
+            <form method="post" action="{% url 'feed:like_message' message.id %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-primary" style="border-radius: 20px;">
+                    Like ({{ message.likes.count }})
+                </button>
+            </form>
+
+            <!-- Delete Button -->
+            {% if message.user == request.user %}
+            <form method="post" action="{% url 'feed:delete_message' message.id %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger" style="border-radius: 20px;">Delete</button>
+            </form>
+            {% endif %}
+
+            <!-- Comment Section -->
+            <div class="comments mt-3">
+                {% for comment in message.comments.all %}
+                <div class="card mt-2" style="border-radius: 10px; background: rgba(220, 220, 220, 0.7);">
+                    <div class="card-body">
+                        <strong>{{ comment.user.username }}:</strong> {{ comment.content }}
+                        <small class="text-muted d-block">{{ comment.created_at }}</small>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <form method="post" action="{% url 'feed:post_comment' message.id %}" class="mt-2">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <textarea name="content" class="form-control" rows="2" placeholder="Add a comment..." style="border-radius: 20px;"></textarea>
+                        <button type="submit" class="btn btn-sm btn-primary" style="border-radius: 20px;">Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
